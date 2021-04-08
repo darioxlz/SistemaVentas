@@ -18,6 +18,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">--}}
+    <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
+    <script src="{!!url('/js/jquery-3.3.1.js')!!}"></script>
+    <script src="{!!url('/js/jquery.dataTables.min.js')!!}"></script>
+    <script src="{!!url('/js/dataTables.bootstrap4.min.js')!!}"></script>
+
+    @stack('styles')
 </head>
 <body>
     <div id="app">
@@ -79,5 +87,7 @@
             @yield('content')
         </main>
     </div>
+
+    @stack('scripts')
 </body>
 </html>

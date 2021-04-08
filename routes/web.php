@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,5 +20,8 @@ Route::post('/acceso', [LoginController::class, 'autenticar'])->name('autenticar
 
 Route::middleware('auth')->group(function () {
     Route::view('/inicio', 'home')->name('inicio');
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::view('/usuarios/listar', 'usuarios.listar')->name('usuarios.listar');
+    Route::get('/datatables/usuarios/listar', [UsuarioController::class, 'data_listar'])->name('usuarios.data.listar');
 });

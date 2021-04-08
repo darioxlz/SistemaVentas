@@ -9,10 +9,8 @@
                 <div class="card-header font-weight-bold text-center h4">Usuarios</div>
 
                 <div class="card-body">
-                    <button class="btn btn-primary btn-block" type="button">Listar</button>
+                    <a class="btn btn-primary btn-block" href="{{route('usuarios.listar')}}" role="button">Listar</a>
                     <button class="btn btn-primary btn-block" type="button">Crear</button>
-                    <button class="btn btn-primary btn-block" type="button">Modificar</button>
-                    <button class="btn btn-primary btn-block" type="button">Eliminar</button>
                 </div>
             </div>
         </div>
@@ -24,8 +22,6 @@
                 <div class="card-body">
                     <button class="btn btn-primary btn-block" type="button">Listar</button>
                     <button class="btn btn-primary btn-block" type="button">Crear</button>
-                    <button class="btn btn-primary btn-block" type="button">Modificar</button>
-                    <button class="btn btn-primary btn-block" type="button">Eliminar</button>
                 </div>
             </div>
         </div>
@@ -46,8 +42,6 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownComprasLink">
                             <a class="dropdown-item" href="#">Listar</a>
                             <a class="dropdown-item" href="#">Crear</a>
-                            <a class="dropdown-item" href="#">Modificar</a>
-                            <a class="dropdown-item" href="#">Eliminar</a>
                         </div>
                     </div>
 
@@ -60,10 +54,9 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownVentasLink">
                             <a class="dropdown-item" href="#">Listar</a>
                             <a class="dropdown-item" href="#">Crear</a>
-                            <a class="dropdown-item" href="#">Modificar</a>
-                            <a class="dropdown-item" href="#">Eliminar</a>
                         </div>
                     </div>
+
                     <button class="btn btn-primary btn-block" type="button">Presupuesto</button>
                 </div>
             </div>
@@ -83,8 +76,6 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownCPCLink">
                             <a class="dropdown-item" href="#">Listar</a>
                             <a class="dropdown-item" href="#">Crear</a>
-                            <a class="dropdown-item" href="#">Modificar</a>
-                            <a class="dropdown-item" href="#">Eliminar</a>
                         </div>
                     </div>
 
@@ -98,8 +89,6 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownCPPLink">
                             <a class="dropdown-item" href="#">Listar</a>
                             <a class="dropdown-item" href="#">Crear</a>
-                            <a class="dropdown-item" href="#">Modificar</a>
-                            <a class="dropdown-item" href="#">Eliminar</a>
                         </div>
                     </div>
                 </div>
@@ -107,8 +96,5 @@
         </div>
     </div>
 {{--  Fin primera hilera de botones  --}}
-
-{{--  Segunda hilera de botones  --}}
-{{--  Fin segunda hilera de botones  --}}
 </div>
 @endsection
