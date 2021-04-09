@@ -10,7 +10,7 @@
 
                 <div class="card-body">
                     <a class="btn btn-primary btn-block" href="{{route('usuarios.listar')}}" role="button">Listar</a>
-                    <button class="btn btn-primary btn-block" type="button">Crear</button>
+                    <a class="btn btn-primary btn-block" href="{{route('usuarios.formulario')}}" role="button">Crear</a>
                 </div>
             </div>
         </div>
