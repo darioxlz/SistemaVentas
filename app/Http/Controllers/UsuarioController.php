@@ -15,7 +15,7 @@ class UsuarioController extends Controller
         return datatables()->of(Usuario::get(['usuario_id', 'nombre', 'apellido', 'cedula', 'correo']))
         ->addColumn('accion', function (Usuario $usuario) {
             $html = '<a class="btn btn-xs btn-primary p-1" href="'. route('usuarios.editar', $usuario->usuario_id) .'">Editar</a> ';
-            $html .= '<a class="btn btn-xs btn-danger p-1" href="#">Eliminar</a>';
+            $html .= '<a class="btn btn-xs btn-danger p-1" href="javascript:confirmarBorrar('. $usuario->usuario_id .')">Eliminar</a>';
 
             return $html;
         })->rawColumns(['accion'])->toJson();
@@ -40,5 +40,12 @@ class UsuarioController extends Controller
     {
         $usuario = Usuario::findOrFail($id);
         return view('usuarios.editar', compact('usuario'));
+    }
+
+    function eliminar($id)
+    {
+        Usuario::findOrFail($id)->delete();
+
+        return redirect()->back();
     }
 }

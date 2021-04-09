@@ -48,7 +48,13 @@
                     },
                     "lengthMenu": [[5, 10, 25, -1], [5, 10, 25, "Todos"]]
                 });
-            })
+            });
+
+            function confirmarBorrar(id) {
+                if (confirm('¿Estás seguro que deseas borrar este registro?')) {
+                    window.location.href = "/usuarios/eliminar/"+id;
+                }
+            }
         </script>
     @endpush
 @endsection
