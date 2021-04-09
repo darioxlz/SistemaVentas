@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::view('/inicio', 'home')->name('inicio');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+    // Rutas USUARIO
     Route::view('/usuarios/listar', 'usuarios.listar')->name('usuarios.listar');
     Route::get('/usuarios/formulario', [UsuarioController::class, 'formulario'])->name('usuarios.formulario');
 
@@ -29,4 +31,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/usuarios/crear', [UsuarioController::class, 'crear'])->name('usuarios.data.crear');
     Route::post('/usuarios/editar/{id}', [UsuarioController::class, 'editar'])->name('usuarios.data.editar');
     Route::get('/usuarios/eliminar/{id}', [UsuarioController::class, 'eliminar'])->name('usuarios.data.eliminar');
+    // FIN Rutas USUARIO
+
+    // Rutas CLIENTE
+    Route::view('/clientes/listar', 'clientes.listar')->name('clientes.listar');
+    Route::get('/clientes/formulario', [ClienteController::class, 'formulario'])->name('clientes.formulario');
+
+    Route::get('/datatables/clientes/listar', [ClienteController::class, 'data_listar'])->name('clientes.data.listar');
+    Route::post('/clientes/crear', [ClienteController::class, 'crear'])->name('clientes.data.crear');
+    Route::post('/clientes/editar/{id}', [ClienteController::class, 'editar'])->name('clientes.data.editar');
+    Route::get('/clientes/eliminar/{id}', [ClienteController::class, 'eliminar'])->name('clientes.data.eliminar');
+    // FIN Rutas CLIENTE
 });

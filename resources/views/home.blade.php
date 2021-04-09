@@ -20,8 +20,8 @@
                 <div class="card-header font-weight-bold text-center h4">Clientes</div>
 
                 <div class="card-body">
-                    <button class="btn btn-primary btn-block" type="button">Listar</button>
-                    <button class="btn btn-primary btn-block" type="button">Crear</button>
+                    <a class="btn btn-primary btn-block" href="{{route('clientes.listar')}}" role="button">Listar</a>
+                    <a class="btn btn-primary btn-block" href="{{route('clientes.formulario')}}" role="button">Crear</a>
                 </div>
             </div>
         </div>

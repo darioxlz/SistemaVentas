@@ -10,7 +10,6 @@ use Illuminate\Validation\Rule;
 
 class UsuarioController extends Controller
 {
-
     function data_listar()
     {
         return datatables()->of(Usuario::get(['usuario_id', 'nombre', 'apellido', 'cedula', 'correo']))
