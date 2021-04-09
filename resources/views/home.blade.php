@@ -31,7 +31,17 @@
                 <div class="card-header font-weight-bold text-center h4">Productos</div>
 
                 <div class="card-body">
-                    <button class="btn btn-primary btn-block mb-2" type="button">Inventario</button>
+                    {{--   Dropdown productos  --}}
+                    <div class="dropdown mb-2">
+                        <a class="btn btn-primary btn-block dropdown-toggle" href="#" role="button" id="dropdownProductosLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Productos
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownProductosLink">
+                            <a class="dropdown-item" href="{{route('productos.listar')}}">Listar</a>
+                            <a class="dropdown-item" href="{{route('productos.formulario')}}">Crear</a>
+                        </div>
+                    </div>
 
                     {{--   Dropdown compras  --}}
                     <div class="dropdown mb-2">

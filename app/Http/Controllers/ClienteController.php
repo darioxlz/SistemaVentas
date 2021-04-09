@@ -62,7 +62,6 @@ class ClienteController extends Controller
         $request->validate([
             'nombre' => 'required|min:3',
             'tipo_documento' => 'required|in:CEDULA,RIF',
-//            'documento' => 'required|integer|gt:0|unique:clientes,documento',
             'documento' => ['required', 'integer', 'gt:0', Rule::unique('clientes')->ignore($id, 'cliente_id')],
             'telefono' => 'nullable|min:3',
             'correo' => 'nullable|email',

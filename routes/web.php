@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,4 +43,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/clientes/editar/{id}', [ClienteController::class, 'editar'])->name('clientes.data.editar');
     Route::get('/clientes/eliminar/{id}', [ClienteController::class, 'eliminar'])->name('clientes.data.eliminar');
     // FIN Rutas CLIENTE
+
+    // Rutas PRODUCTO
+    Route::view('/productos/listar', 'productos.listar')->name('productos.listar');
+    Route::get('/productos/formulario', [ProductoController::class, 'formulario'])->name('productos.formulario');
+
+    Route::get('/datatables/productos/listar', [ProductoController::class, 'data_listar'])->name('productos.data.listar');
+    Route::post('/productos/crear', [ProductoController::class, 'crear'])->name('productos.data.crear');
+    Route::post('/productos/editar/{id}', [ProductoController::class, 'editar'])->name('productos.data.editar');
+    Route::get('/productos/eliminar/{id}', [ProductoController::class, 'eliminar'])->name('productos.data.eliminar');
+    // FIN Rutas PRODUCTO
 });
