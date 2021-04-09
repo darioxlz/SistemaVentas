@@ -25,8 +25,6 @@
                 <label for="tipo_documento" class="col-md-4 col-form-label text-md-right">Tipo de documento</label>
 
                 <div class="col-md-6">
-{{--                    <input id="tipo_documento" type="text" class="form-control" name="tipo_documento" value="{{ $cliente->tipo_documento }}" required autocomplete="tipo_documento">--}}
-
                     <select name="tipo_documento" id="tipo_documento" class="form-control">
                         <option value="RIF" @if($cliente->tipo_documento == 'RIF') selected @endif>RIF</option>
                         <option value="CEDULA" @if($cliente->tipo_documento == 'CEDULA') selected @endif>CEDULA</option>
@@ -80,8 +78,6 @@
                 <label for="descripcion" class="col-md-4 col-form-label text-md-right">Descripcion</label>
 
                 <div class="col-md-6">
-{{--                    <input id="descripcion" type="password" class="form-control" name="descripcion" autocomplete="descripcion">--}}
-
                     <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="form-control">{{$cliente->descripcion}}</textarea>
 
                     @error('descripcion')

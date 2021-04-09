@@ -84,8 +84,8 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownCPCLink">
-                            <a class="dropdown-item" href="#">Listar</a>
-                            <a class="dropdown-item" href="#">Crear</a>
+                            <a class="dropdown-item" href="{{route('cuentas.listar', ['tipo' => 'CPC'])}}">Listar</a>
+                            <a class="dropdown-item" href="{{route('cuentas.formulario', ['tipo' => 'CPC'])}}">Crear</a>
                         </div>
                     </div>
 
@@ -97,8 +97,8 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownCPPLink">
-                            <a class="dropdown-item" href="#">Listar</a>
-                            <a class="dropdown-item" href="#">Crear</a>
+                            <a class="dropdown-item" href="{{route('cuentas.listar', ['tipo' => 'CPP'])}}">Listar</a>
+                            <a class="dropdown-item" href="{{route('cuentas.formulario', ['tipo' => 'CPP'])}}">Crear</a>
                         </div>
                     </div>
                 </div>

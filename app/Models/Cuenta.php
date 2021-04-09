@@ -54,11 +54,16 @@ class Cuenta extends Model
 
     public function usuario()
     {
-        $this->belongsTo(Usuario::class, 'creado_por', 'usuario_id');
+        return $this->belongsTo(Usuario::class, 'creado_por', 'usuario_id');
     }
 
     public function cliente()
     {
-        $this->belongsTo(Cliente::class, 'cliente_id', 'cliente_id');
+        return $this->belongsTo(Cliente::class, 'cliente_id', 'cliente_id')->withTrashed();
+    }
+
+    public function getCreatedAtAttribute($date)
+    {
+        return date("d-m-Y", strtotime($date));
     }
 }

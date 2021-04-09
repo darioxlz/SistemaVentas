@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
@@ -52,5 +53,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/productos/crear', [ProductoController::class, 'crear'])->name('productos.data.crear');
     Route::post('/productos/editar/{id}', [ProductoController::class, 'editar'])->name('productos.data.editar');
     Route::get('/productos/eliminar/{id}', [ProductoController::class, 'eliminar'])->name('productos.data.eliminar');
-    // FIN Rutas PRODUCTO
+    // FIN Rutas
+
+    // Rutas CUENTA
+    Route::get('/cuentas/listar', [CuentaController::class, 'listar'])->name('cuentas.listar');
+    Route::get('/cuentas/formulario', [CuentaController::class, 'formulario'])->name('cuentas.formulario');
+
+    Route::get('/datatables/cuentas/listar', [CuentaController::class, 'data_listar'])->name('cuentas.data.listar');
+    Route::post('/cuentas/crear', [CuentaController::class, 'crear'])->name('cuentas.data.crear');
+    Route::post('/cuentas/editar/{id}', [CuentaController::class, 'editar'])->name('cuentas.data.editar');
+    Route::get('/cuentas/eliminar/{id}', [CuentaController::class, 'eliminar'])->name('cuentas.data.eliminar');
+    // FIN Rutas CUENTA
 });
