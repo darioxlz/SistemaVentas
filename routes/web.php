@@ -23,5 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::view('/usuarios/listar', 'usuarios.listar')->name('usuarios.listar');
+    Route::get('/usuarios/editar/{id}', [UsuarioController::class, 'form_editar'])->name('usuarios.editar');
+
     Route::get('/datatables/usuarios/listar', [UsuarioController::class, 'data_listar'])->name('usuarios.data.listar');
+    Route::post('/usuarios/editar/{id}', [UsuarioController::class, 'editar'])->name('usuarios.data.editar');
 });

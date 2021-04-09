@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,10 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-{{--    <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
-    <script src="{!!url('/js/jquery-3.3.1.js')!!}"></script>
+{{--    <script src="{!!url('/js/jquery-3.3.1.js')!!}"></script>--}}
+{{--    <script src="{!!url('/js/bootstrap.bundle.min.js')!!}"></script>--}}
+
     <script src="{!!url('/js/jquery.dataTables.min.js')!!}"></script>
     <script src="{!!url('/js/dataTables.bootstrap4.min.js')!!}"></script>
 
@@ -31,7 +32,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ route('inicio') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

@@ -15,7 +15,7 @@
                             <label for="correo" class="col-md-4 col-form-label text-md-right">Correo</label>
 
                             <div class="col-md-6">
-                                <input id="correo" type="correo" class="form-control @error('correo') is-invalid @enderror" name="correo" value="{{ old('correo') }}" required autocomplete="correo" autofocus>
+                                <input id="correo" type="email" class="form-control @error('correo') is-invalid @enderror" name="correo" value="{{ old('correo') }}" required autocomplete="correo" autofocus>
 
                                 @error('correo')
                                     <span class="invalid-feedback" role="alert">

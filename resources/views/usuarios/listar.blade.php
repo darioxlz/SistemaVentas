@@ -2,6 +2,14 @@
 
 @section('content')
     <div class="container">
+        <h4>Usuarios</h4>
+
+        @error('correo')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
         <table id="usuarios" class="table table-hover table-striped table-bordered">
             <thead class="thead-dark">
             <tr>
@@ -20,8 +28,9 @@
         <script>
             $(document).ready(function() {
                 $.noConflict();
+                $ = jQuery;
 
-                $('#usuarios').DataTable({
+                const tabla = $('#usuarios').DataTable({
                     ajax: '{{route('usuarios.data.listar')}}',
                     serverSide: true,
                     processing: true,
