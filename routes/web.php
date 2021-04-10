@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CuentaController;
+use App\Http\Controllers\PresupuestoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::view('/inicio', 'home')->name('inicio');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+
     // Rutas USUARIO
     Route::view('/usuarios/listar', 'usuarios.listar')->name('usuarios.listar');
     Route::get('/usuarios/formulario', [UsuarioController::class, 'formulario'])->name('usuarios.formulario');
@@ -34,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/usuarios/editar/{id}', [UsuarioController::class, 'editar'])->name('usuarios.data.editar');
     Route::get('/usuarios/eliminar/{id}', [UsuarioController::class, 'eliminar'])->name('usuarios.data.eliminar');
     // FIN Rutas USUARIO
+
 
     // Rutas CLIENTE
     Route::view('/clientes/listar', 'clientes.listar')->name('clientes.listar');
@@ -45,6 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/clientes/eliminar/{id}', [ClienteController::class, 'eliminar'])->name('clientes.data.eliminar');
     // FIN Rutas CLIENTE
 
+
     // Rutas PRODUCTO
     Route::view('/productos/listar', 'productos.listar')->name('productos.listar');
     Route::get('/productos/formulario', [ProductoController::class, 'formulario'])->name('productos.formulario');
@@ -55,6 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/productos/eliminar/{id}', [ProductoController::class, 'eliminar'])->name('productos.data.eliminar');
     // FIN Rutas
 
+
     // Rutas CUENTA
     Route::get('/cuentas/listar', [CuentaController::class, 'listar'])->name('cuentas.listar');
     Route::get('/cuentas/formulario', [CuentaController::class, 'formulario'])->name('cuentas.formulario');
@@ -64,4 +69,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/cuentas/editar/{id}', [CuentaController::class, 'editar'])->name('cuentas.data.editar');
     Route::get('/cuentas/eliminar/{id}', [CuentaController::class, 'eliminar'])->name('cuentas.data.eliminar');
     // FIN Rutas CUENTA
+
+
+    // Rutas PRESUPUESTO
+    Route::view('/presupuestos/crear', 'presupuestos.crear')->name('presupuestos.crear');
+    Route::get('/presupuestos/productos/obtener', [PresupuestoController::class, 'obtener_productos'])->name('presupuestos.obtener.productos');
+    Route::post('/presupuestos/productos/generar', [PresupuestoController::class, 'generar'])->name('presupuestos.generar');
+    // FIN Rutas PRESUPUESTO
 });

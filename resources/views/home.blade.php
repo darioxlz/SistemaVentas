@@ -67,7 +67,7 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary btn-block" type="button">Presupuesto</button>
+                    <a class="btn btn-primary btn-block" href="{{route('presupuestos.crear')}}">Presupuesto</a>
                 </div>
             </div>
         </div>

@@ -19,12 +19,17 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-
-{{--    <script src="{!!url('/js/jquery-3.3.1.js')!!}"></script>--}}
-{{--    <script src="{!!url('/js/bootstrap.bundle.min.js')!!}"></script>--}}
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
 
     <script src="{!!url('/js/jquery.dataTables.min.js')!!}"></script>
     <script src="{!!url('/js/dataTables.bootstrap4.min.js')!!}"></script>
+    <script src="{!!url('/js/select2.min.js')!!}"></script>
+    {{--  select2 archivo de español --}}
+    <script src="{!!url('/js/es.js')!!}"></script>
+
+    <script>
+        $.fn.select2.defaults.set('language', 'es');
+    </script>
 
     @stack('styles')
 </head>
