@@ -72,6 +72,9 @@
                 const select = $('#select-productos');
                 let listaProductos = [];
                 const tabla = $('#productos');
+                const cantidad = $('#cantidad');
+                const tipo = '{{$tipo}}';
+                let stock = 0;
 
                 select.select2({
                     ajax: {
@@ -104,15 +107,19 @@
                     }]
                 });
 
+                select.on('select2:select', function (e) {
+                    stock = $(this).select2('data')[0].stock;
+                });
+
                 $('#btnAddItem').on('click', function () {
                     let id = select.val();
-                    let cantidad = parseInt($('#cantidad').val());
+                    let cantidadVal = parseInt(cantidad.val());
 
                     if (id == null) {
                         return alert('Debes seleccionar al menos un producto');
                     }
 
-                    if (isNaN(cantidad) || parseInt(cantidad) < 1) {
+                    if (isNaN(cantidadVal) || parseInt(cantidadVal) < 1) {
                         return alert('Debes especificar la cantidad, mayora a 0');
                     }
 
@@ -123,17 +130,22 @@
                     if (existe != null) {
                         alert('Este producto ya lo añadiste');
                     } else {
-                        let texto = $('#select-productos :selected').text().split(' | ');
+                        let datos = select.select2('data')[0];
 
-                        let descripcion = texto[0];
-                        let precio = texto[1];
+                        let descripcion = datos.descripcion;
+                        let precio = datos.precio;
+                        let stock = datos.stock;
+
+                        if (tipo == 'VENTA' && parseInt(stock) < cantidadVal) {
+                            return alert('No hay stock suficiente');
+                        }
 
                         dataTable.row.add([
                             id,
                             descripcion,
-                            cantidad,
+                            cantidadVal,
                             precio,
-                            cantidad * parseFloat(precio),
+                            cantidadVal * parseFloat(precio),
                             `<button class="btn btn-xs btn-danger del-button" data-id="${id}">Eliminar</button>`
                         ]).draw();
 
@@ -141,9 +153,9 @@
 
                         select.val('').trigger('change');
                         $('#btnCrear').prop('disabled', false);
-                        $('#cantidad').val('');
+                        cantidad.val('');
 
-                        $('#formOculto').append(`<input type="hidden" name="productos[]" data-id="${id}" value="${id}|||${cantidad}" />`);
+                        $('#formOculto').append(`<input type="hidden" name="productos[]" data-id="${id}" value="${id}|||${cantidadVal}" />`);
                     }
                 });
 

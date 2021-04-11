@@ -58,6 +58,14 @@ class TransaccionController extends Controller
 
             $monto_total += $producto_model->precio * $cantidad;
 
+            if ($tipo == 'COMPRA') {
+                $producto_model->stock += $cantidad;
+            } elseif ($tipo == 'VENTA') {
+                $producto_model->stock -= $cantidad;
+            }
+
+            $producto_model->save();
+
             array_push($productos, ['producto_id' => $id, 'cantidad' => $cantidad, 'precio' => $producto_model->precio]);
         }
 

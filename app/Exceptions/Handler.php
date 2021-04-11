@@ -39,16 +39,27 @@ class Handler extends ExceptionHandler
         });
     }
 
-//    public function render($request, $e)
-//    {
-//        if ($this->isHttpException($e)) {
-//            if ($e->getCode() == 404) {
-//                redirect()->guest('acceso');
-//            } else {
-//                $this->renderHttpException($e);
-//            }
-//        } else {
-//            return parent::render($request, $e);
-//        }
-//    }
+    public function render($request, $exception)
+    {
+        if($this->isHttpException($exception)) {
+            switch ($exception->getStatusCode()) {
+                // ruta no existe
+                case 404:
+                    return redirect()->route('acceso');
+                    break;
+
+                // error interno
+                case 500:
+                    return \Response::view('errors.500', [], 500);
+                    break;
+
+                // render del error
+                default:
+                    return $this->renderHttpException($exception);
+                    break;
+            }
+        } else {
+            return parent::render($request, $exception);
+        }
+    }
 }

@@ -54,7 +54,7 @@ class Cuenta extends Model
 
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class, 'creado_por', 'usuario_id');
+        return $this->belongsTo(Usuario::class, 'creado_por', 'usuario_id')->withTrashed();
     }
 
     public function cliente()

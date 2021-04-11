@@ -4,16 +4,21 @@
     <div class="container">
         <h4>Crear presupuesto</h4>
 
-        <label for="select-productos">Productos</label>
-        <select class="form-control" id="select-productos"></select>
+        <div class="form-group row">
+            <label for="select-productos">Productos</label>
 
-        <button class="my-3 btn btn-primary" id="btnAddItem">Añadir</button>
+            <div class="col-md-6">
+                <select class="form-control" id="select-productos"></select>
 
-        <form action="{{route('presupuestos.generar')}}" method="POST" id="formOculto">
-            @csrf
+                <button class="my-3 btn btn-primary" id="btnAddItem">Añadir</button>
 
-            <button class="my-3 btn btn-primary" id="btnCrear" disabled="disabled" type="submit">Crear presupuesto</button>
-        </form>
+                <form action="{{route('presupuestos.generar')}}" method="POST" id="formOculto">
+                    @csrf
+
+                    <button class="my-3 btn btn-primary" id="btnCrear" disabled="disabled" type="submit">Crear presupuesto</button>
+                </form>
+            </div>
+        </div>
 
         <table id="productos" class="table table-hover table-striped table-bordered">
             <thead class="thead-dark">
@@ -85,10 +90,10 @@
                     if (existe != null) {
                         alert('Este producto ya lo añadiste al presupuesto');
                     } else {
-                        let texto = $('#select-productos :selected').text().split(' | ');
+                        let data = select.select2('data')[0];
 
-                        let descripcion = texto[0];
-                        let precio = texto[1];
+                        let descripcion = data.descripcion;
+                        let precio = data.precio;
 
                         dataTable.row.add([
                             id,
