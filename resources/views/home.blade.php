@@ -50,20 +50,20 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownComprasLink">
-                            <a class="dropdown-item" href="#">Listar</a>
-                            <a class="dropdown-item" href="#">Crear</a>
+                            <a class="dropdown-item" href="{{route('transacciones.listar', ['tipo' => 'COMPRA'])}}">Listar</a>
+                            <a class="dropdown-item" href="{{route('transacciones.formulario', ['tipo' => 'COMPRA'])}}">Crear</a>
                         </div>
                     </div>
 
-                    {{--   Dropdown ventas  --}}
+                    {{--   Dropdown transacciones  --}}
                     <div class="dropdown mb-2">
                         <a class="btn btn-primary btn-block dropdown-toggle" href="#" role="button" id="dropdownVentasLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Ventas
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownVentasLink">
-                            <a class="dropdown-item" href="#">Listar</a>
-                            <a class="dropdown-item" href="#">Crear</a>
+                            <a class="dropdown-item" href="{{route('transacciones.listar', ['tipo' => 'VENTA'])}}">Listar</a>
+                            <a class="dropdown-item" href="{{route('transacciones.formulario', ['tipo' => 'VENTA'])}}">Crear</a>
                         </div>
                     </div>
 

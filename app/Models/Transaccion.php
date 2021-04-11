@@ -55,16 +55,21 @@ class Transaccion extends Model
 
     public function cliente()
     {
-        return $this->belongsTo(Cliente::class, 'cliente_id', 'cliente_id');
+        return $this->belongsTo(Cliente::class, 'cliente_id', 'cliente_id')->withTrashed();
     }
 
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class, 'creado_por', 'usuario_id');
+        return $this->belongsTo(Usuario::class, 'creado_por', 'usuario_id')->withTrashed();
     }
 
     public function cv_productos()
     {
         return $this->hasMany(CV_Producto::class, 'transaccion_id', 'transaccion_id');
+    }
+
+    public function getCreatedAtAttribute($date)
+    {
+        return date("d-m-Y", strtotime($date));
     }
 }

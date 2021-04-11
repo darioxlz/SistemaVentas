@@ -6,6 +6,7 @@ use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\PresupuestoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\TransaccionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/productos/formulario', [ProductoController::class, 'formulario'])->name('productos.formulario');
 
     Route::get('/datatables/productos/listar', [ProductoController::class, 'data_listar'])->name('productos.data.listar');
+    Route::get('/select2/productos/listar', [ProductoController::class, 'obtener_productos_select2'])->name('productos.data.select2');
     Route::post('/productos/crear', [ProductoController::class, 'crear'])->name('productos.data.crear');
     Route::post('/productos/editar/{id}', [ProductoController::class, 'editar'])->name('productos.data.editar');
     Route::get('/productos/eliminar/{id}', [ProductoController::class, 'eliminar'])->name('productos.data.eliminar');
@@ -73,7 +75,16 @@ Route::middleware('auth')->group(function () {
 
     // Rutas PRESUPUESTO
     Route::view('/presupuestos/crear', 'presupuestos.crear')->name('presupuestos.crear');
-    Route::get('/presupuestos/productos/obtener', [PresupuestoController::class, 'obtener_productos'])->name('presupuestos.obtener.productos');
-    Route::post('/presupuestos/productos/generar', [PresupuestoController::class, 'generar'])->name('presupuestos.generar');
+    Route::post('/presupuestos/reporte/generar', [PresupuestoController::class, 'generar'])->name('presupuestos.generar');
     // FIN Rutas PRESUPUESTO
+
+
+    // Rutas TRANSACCION
+    Route::get('/transacciones/listar', [TransaccionController::class, 'listar'])->name('transacciones.listar');
+    Route::get('/transacciones/formulario', [TransaccionController::class, 'formulario'])->name('transacciones.formulario');
+    Route::get('/transacciones/reporte/generar', [TransaccionController::class, 'generar'])->name('transacciones.generar');
+
+    Route::get('/datatables/transacciones/listar', [TransaccionController::class, 'data_listar'])->name('transacciones.data.listar');
+    Route::post('/transacciones/crear', [TransaccionController::class, 'crear'])->name('transacciones.data.crear');
+    // FIN Rutas TRANSACCION
 });

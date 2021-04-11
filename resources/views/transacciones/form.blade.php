@@ -2,27 +2,59 @@
 
 @section('content')
     <div class="container">
-        <h4>Crear presupuesto</h4>
+        <h4>Crear transaccion {{$tipo}}</h4>
 
-        <label for="select-productos">Productos</label>
-        <select class="form-control" id="select-productos"></select>
-
-        <button class="my-3 btn btn-primary" id="btnAddItem">Añadir</button>
-
-        <form action="{{route('presupuestos.generar')}}" method="POST" id="formOculto">
+        <form method="POST" action="{{route('transacciones.data.crear')}}" id="formOculto">
             @csrf
+            <input type="hidden" name="tipo" value="{{$tipo}}">
 
-            <button class="my-3 btn btn-primary" id="btnCrear" disabled="disabled" type="submit">Crear presupuesto</button>
+            <div class="form-group row">
+                <label for="cliente_id" class="col-md-4 col-form-label text-md-right">Cliente</label>
+
+                <div class="col-md-6">
+                    <select name="cliente_id" id="cliente_id" class="form-control">
+                        @foreach($clientes as $cliente)
+                            <option value="{{$cliente->cliente_id}}">{{$cliente->nombre}}</option>
+                        @endforeach
+                    </select>
+
+                    <button class="my-3 btn btn-primary" id="btnCrear" disabled="disabled" type="submit">Crear transaccion</button>
+                </div>
+            </div>
         </form>
+
+        <div class="form-group row">
+            <label for="select-productos" class="col-md-4 col-form-label text-md-right">Productos</label>
+
+            <div class="col-md-6">
+                <select class="form-control" id="select-productos"></select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="cantidad" class="col-md-4 col-form-label text-md-right">Cantidad</label>
+
+            <div class="col-md-6">
+                <input id="cantidad" type="number" min="0" class="form-control" name="cantidad" required>
+            </div>
+        </div>
+
+        <div class="form-group row mb-0">
+            <div class="col-md-8 offset-md-4">
+                <button class="my-3 btn btn-primary" id="btnAddItem">Añadir</button>
+            </div>
+        </div>
 
         <table id="productos" class="table table-hover table-striped table-bordered">
             <thead class="thead-dark">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Accion</th>
-            </tr>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col">Accion</th>
+                </tr>
             </thead>
 
             <tbody>
@@ -36,6 +68,7 @@
             $(document).ready(function () {
                 $.noConflict();
                 $ = jQuery;
+
                 const select = $('#select-productos');
                 let listaProductos = [];
                 const tabla = $('#productos');
@@ -65,7 +98,7 @@
                     },
                     lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "Todos"]],
                     columnDefs: [{
-                        targets: 3,
+                        targets: 5,
                         orderable: false,
                         searchable: false
                     }]
@@ -73,9 +106,14 @@
 
                 $('#btnAddItem').on('click', function () {
                     let id = select.val();
+                    let cantidad = parseInt($('#cantidad').val());
 
                     if (id == null) {
                         return alert('Debes seleccionar al menos un producto');
+                    }
+
+                    if (isNaN(cantidad) || parseInt(cantidad) < 1) {
+                        return alert('Debes especificar la cantidad, mayora a 0');
                     }
 
                     const existe = listaProductos.find(producto => {
@@ -83,7 +121,7 @@
                     });
 
                     if (existe != null) {
-                        alert('Este producto ya lo añadiste al presupuesto');
+                        alert('Este producto ya lo añadiste');
                     } else {
                         let texto = $('#select-productos :selected').text().split(' | ');
 
@@ -93,15 +131,19 @@
                         dataTable.row.add([
                             id,
                             descripcion,
+                            cantidad,
                             precio,
+                            cantidad * parseFloat(precio),
                             `<button class="btn btn-xs btn-danger del-button" data-id="${id}">Eliminar</button>`
                         ]).draw();
 
                         listaProductos.push(id);
+
                         select.val('').trigger('change');
                         $('#btnCrear').prop('disabled', false);
+                        $('#cantidad').val('');
 
-                        $('#formOculto').append(`<input type="hidden" name="producto_id[]" value="${id}" />`);
+                        $('#formOculto').append(`<input type="hidden" name="productos[]" data-id="${id}" value="${id}|||${cantidad}" />`);
                     }
                 });
 
@@ -115,7 +157,7 @@
                     }
 
                     dataTable.row($(this).parents("tr")).remove().draw();
-                    $(`#formOculto input[value="${id}"]`).remove();
+                    $(`#formOculto input[data-id="${id}"]`).remove();
                 });
             });
         </script>
