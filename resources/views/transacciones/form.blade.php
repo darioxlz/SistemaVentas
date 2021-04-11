@@ -7,6 +7,11 @@
         <form method="POST" action="{{route('transacciones.data.crear')}}" id="formOculto">
             @csrf
             <input type="hidden" name="tipo" value="{{$tipo}}">
+            @error('tipo')
+            <span class="text-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+            @enderror
 
             <div class="form-group row">
                 <label for="cliente_id" class="col-md-4 col-form-label text-md-right">Cliente</label>
@@ -17,6 +22,12 @@
                             <option value="{{$cliente->cliente_id}}">{{$cliente->nombre}}</option>
                         @endforeach
                     </select>
+
+                    @error('cliente_id')
+                    <span class="text-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
 
                     <button class="my-3 btn btn-primary" id="btnCrear" disabled="disabled" type="submit">Crear transaccion</button>
                 </div>

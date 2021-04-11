@@ -27,15 +27,11 @@ class DatabaseSeeder extends Seeder
             'contrasena' => '12345678'
         ]);
         Usuario::factory()->count(9)->create();
-
         Cliente::factory()->count(20)->create();
-
         Producto::factory()->count(50)->create();
-
         Cuenta::factory()->count(20)->create();
 
-        Transaccion::factory()->count(20)->create();
-
-        CV_Producto::factory()->count(100)->create();
+//        Transaccion::factory()->count(20)->create();
+//        CV_Producto::factory()->count(100)->create();
     }
 }

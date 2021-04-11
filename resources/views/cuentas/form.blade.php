@@ -16,6 +16,12 @@
                             <option value="{{$cliente->cliente_id}}" @if($cuenta->cliente_id == $cliente->cliente_id) selected @endif >{{$cliente->nombre}}</option>
                         @endforeach
                     </select>
+
+                    @error('cliente_id')
+                    <span class="text-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
             </div>
 
@@ -27,6 +33,12 @@
                         <option value="CPP" @if($cuenta->tipo == 'CPP') selected @endif>Por pagar</option>
                         <option value="CPC" @if($cuenta->tipo == 'CPC') selected @endif>Por cobrar</option>
                     </select>
+
+                    @error('tipo')
+                    <span class="text-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
             </div>
 

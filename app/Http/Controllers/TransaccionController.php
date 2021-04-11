@@ -40,6 +40,11 @@ class TransaccionController extends Controller
 
     public function crear(Request $request)
     {
+        $request->validate([
+            'cliente_id' => 'required|integer|exists:clientes,cliente_id',
+            'tipo' => 'required|in:VENTA,COMPRA'
+        ]);
+
         $tipo = $request->get('tipo');
         $cliente_id = $request->get('cliente_id');
         $productos_request = $request->get('productos');
