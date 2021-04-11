@@ -36,7 +36,6 @@ COPY .docker/vhost.conf /etc/apache2/sites-available/000-default.conf
 # copy laravel project to WORKDIR
 COPY . ./
 RUN npm run dev
-RUN npm run dev
 
 # copy script to run after create container
 COPY .docker/docker-php-entrypoint /usr/local/bin/

@@ -8,7 +8,8 @@
 	cd /sistema-ventas
 	composer dump-autoload
 	php artisan key:generate
-	php artisan migrate:fresh --force -n
+	php artisan migrate:fresh --seed --force -n
+    php artisan config:cache
 	echo 'Migrations done!'
 
 # APACHE -----------------------------------
