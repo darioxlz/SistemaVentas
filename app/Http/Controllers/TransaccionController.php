@@ -121,9 +121,11 @@ class TransaccionController extends Controller
 
             $cv_productos = CV_Producto::with('producto')->where('transaccion_id', '=', $transaccion->transaccion_id)->get();
 
+            // return view('transacciones.pdf', compact('transaccion', 'cv_productos'));
+
             $pdf = PDF::loadView('transacciones.pdf', compact('transaccion', 'cv_productos'));
 
-            return $pdf->download("Transaccion ".$transaccion->tipo. " ".$transaccion->created_at.".pdf");
+            return $pdf->download("Transaccion #".$transaccion->transaccion_id." ".$transaccion->tipo. " ".$transaccion->created_at.".pdf");
         }
     }
 }

@@ -2,17 +2,45 @@
 <html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <link rel="stylesheet" href="{{ public_path('/css/bootstrap.min.css') }}">
+        <!-- <link rel="stylesheet" href="{{ public_path('/css/bootstrap.min.css') }}"> -->
         <title>Presupuesto</title>
+
+        <style>
+            @font-face {
+                font-family: 'Consolas';
+                src: url({{ storage_path('fonts/consolas.ttf') }}) format("truetype");
+                font-weight: 400;
+                font-style: normal;
+            }
+
+            body {
+                font-family: "Consolas" !important;
+            }
+
+            table {
+                width: 100%;
+            }
+
+            .logo {
+                width: 100px;
+                height: 100px;
+                margin-left: 20em;
+            }
+        </style>
     </head>
 
     <body>
-        <div class="container-fluid">
-            <h2>Presupuesto {{date('d-m-Y')}}</h2>
-            <h4>Telecon Erickson</h4>
+        <div>
+            <span>
+                <h1 style="display: inline;">Telecon Erickson</h1>
 
-            <table class="table table-hover table-striped table-bordered">
-                <thead class="thead-dark">
+                <img class="logo" src="{{ public_path() . '/images/logo.png'}}" alt="Logo">
+            </span>
+
+            <h4><u>Presupuesto</u> <u style="margin-left: 5em;">Fecha</u>: {{date('d-m-Y')}}</h4>
+
+            <table border="1">
+                <thead>
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Descripcion</th>

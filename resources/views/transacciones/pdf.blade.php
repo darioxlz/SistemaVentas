@@ -1,52 +1,96 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" href="{{ public_path('/css/bootstrap.min.css') }}">
-    <title>Transaccion</title>
-</head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Transaccion</title>
 
-<body>
-<div class="container-fluid">
-    <h2>Transaccion: {{$transaccion->tipo}}</h2>
-    <h4>Telecon Erickson</h4>
-    <h5>Cliente: {{$transaccion->cliente->nombre}}</h5>
-    <h5>Creado por: {{$transaccion->usuario->nombre}} {{$transaccion->usuario->apellido}}</h5>
-    <h6>Fecha: {{$transaccion->created_at}}</h6>
+        <style>
+            @font-face {
+                font-family: 'Consolas';
+                src: url({{ storage_path('fonts/consolas.ttf') }}) format("truetype");
+                font-weight: 400;
+                font-style: normal;
+            }
 
-    <table class="table table-sm table-striped table-bordered">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">Producto ID</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Subtotal</th>
-        </tr>
-        </thead>
+            body {
+                font-family: "Consolas" !important;
+            }
 
-        <tbody>
-        @foreach($cv_productos as $producto)
-            <tr>
-                <th>{{$producto->producto_id}}</th>
-                <th>{{$producto->producto->descripcion}}</th>
-                <th>{{$producto->cantidad}}</th>
-                <th>{{number_format($producto->precio, 3, '.', ',')}}</th>
-                <th>{{number_format($producto->precio * $producto->cantidad, 3, '.', ',')}}</th>
-            </tr>
+            table {
+                width: 100%;
+            }
 
-            @if($loop->last)
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>Monto total</th>
-                    <th>{{number_format($transaccion->monto_total, 3, '.', ',')}}</th>
-                </tr>
-            @endif
-        @endforeach
-        </tbody>
-    </table>
-</div>
-</body>
+            .logo {
+                width: 100px;
+                height: 100px;
+                margin-left: 20em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div>
+            <span>
+                <h1 style="display: inline;">Telecon Erickson</h1>
+
+                <img class="logo" src="{{ public_path() . '/images/logo.png'}}" alt="Logo">
+            </span>
+
+            <p>
+                <strong><u>Transaccion</u></strong>: {{$transaccion->tipo}}
+
+                <span style="margin-left: 5em;">
+                    <strong><u>Cliente</u></strong>: {{$transaccion->cliente->nombre}}
+                </span>
+
+                <span style="margin-left: 4em;">
+                    <strong><u>Transaccion #</u></strong>: {{$transaccion->transaccion_id}}
+                </span>
+            </p>
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th scope="col">Producto ID</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Subtotal</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach($cv_productos as $producto)
+                        <tr>
+                            <th>{{$producto->producto_id}}</th>
+                            <th>{{$producto->producto->descripcion}}</th>
+                            <th>{{$producto->cantidad}}</th>
+                            <th>{{number_format($producto->precio, 3, '.', ',')}}</th>
+                            <th>{{number_format($producto->precio * $producto->cantidad, 3, '.', ',')}}</th>
+                        </tr>
+
+                        @if($loop->last)
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th><strong>Monto total</strong></th>
+                                <th><strong>{{number_format($transaccion->monto_total, 3, '.', ',')}}</strong></th>
+                            </tr>
+                        @endif
+                    @endforeach
+                </tbody>
+            </table>
+
+            <center>
+                <span>
+                    <strong><u>Fecha</u>: </strong> {{$transaccion->created_at}}
+
+                    <span style="margin-left: 5em;">
+                        <strong><u>Empleado</u>: </strong> {{$transaccion->usuario->nombre}} {{$transaccion->usuario->apellido}}
+                    </span>
+                </span>
+            </center>
+        </div>
+    </body>
 </html>
